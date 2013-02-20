@@ -1,20 +1,27 @@
 {
-  "name": "mdt",
-  "version": "0.0.1",
-  "description": "a markdown tool to convert markdown and html file.",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:wondger/mdt.git"
-  },
-  "keywords": [
-    "mdt",
+    "name": "mdt",
+    "version": "0.0.1",
+    "description": "a markdown tool to convert markdown and html file.",
+    "main": "index.js",
+    "scripts": {
+        "test": "node test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:wondger/mdt.git"
+    },
+    "keywords": [
+        "mdt",
     "markdown",
     "html"
-  ],
-  "author": "wondger@gmail.com",
-  "license": "BSD"
+        ],
+    "engines": {
+        "node": ">= 0.8.18"
+    },
+    "author": "wondger@gmail.com",
+    "license": "BSD",
+    "dependencies": {
+        "iconv-lite": "~0.2.5",
+        "marked": "~0.2.8"
+    }
 }
