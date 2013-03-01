@@ -1,0 +1,13 @@
+{
+    "src": "./",
+    "dest": "./",
+    // templates directory
+    "templates": "./templates",
+    // default template: this.templates + "/template.tpl"
+    // if not exsits default: this.templates + (md filename) + ".tpl"
+    // and you can specify a template map, key is md filename, value is template.
+    // and it auto search this.templates + "index.tpl"
+    "template": {
+        "link": "./templates/xx.tpl",
+    }
+}

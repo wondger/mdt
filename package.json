@@ -3,6 +3,9 @@
     "version": "0.0.1",
     "description": "a markdown tool to convert markdown and html file.",
     "main": "index.js",
+    "bin": {
+        "mdt": "bin/mdt.js"
+    },
     "scripts": {
         "test": "node test"
     },
@@ -21,7 +24,9 @@
     "author": "wondger@gmail.com",
     "license": "BSD",
     "dependencies": {
-        "iconv-lite": "~0.2.5",
-        "marked": "~0.2.8"
+        "iconv-lite": ">=0.2.5",
+        "marked": ">=0.2.8",
+        "mustache": ">=0.7.2",
+        "walker": ">=1.0.3"
     }
 }
