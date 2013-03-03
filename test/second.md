@@ -1,6 +1,7 @@
 <!--
 @title: second test blog
-@dest: second.html
+@dest: ./html/second.html
+@template: ./templates/default.tpl
 @abstract: just a test
     second test
 -->

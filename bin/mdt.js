@@ -14,29 +14,24 @@ function main(argv) {
         return;
     }
 
-    var argv = argv.slice().slice(2);
+    var argv = argv.slice().slice(2),
+        sargv = argv.join(" "),
+        reg = /(?:^|\s+)(?:-f|--force)(?:\s+|$)/i;
 
-    var todo = argv.length ? argv.shift() : "";
-    var src = argv.length ? argv[0] : "";
+    var force = reg.test(sargv);
+    var src = sargv.replace(reg, "");
 
-    switch (todo) {
-        case "--convert":
-        case "-c":
-            if (!src) return;
-            mdt.convert(src, true);
-            break;
+
+    switch (src) {
         case "":
-        case "--all":
-        case "-a":
-            mdt.convertAll();
+            mdt.convertAll(force);
             break;
         default:
             /*
              * command: mdt xxx.md
              */
-            if (/\.md$/i.test(todo) && !src) {
-                mdt.post(todo);
-            }
+            console.log(src);
+            mdt.convert(src, force);
             break;
     }
 };

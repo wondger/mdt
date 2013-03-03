@@ -15,8 +15,7 @@ just test for Mou, a markdown editor on mac
 
 and i also want to do something:
 
-<!--just comment
--->
+<!--just comment-->
 
 1. just test
 2. i don't know
