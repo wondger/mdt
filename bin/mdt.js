@@ -30,7 +30,6 @@ function main(argv) {
             /*
              * command: mdt xxx.md
              */
-            console.log(src);
             mdt.convert(src, force);
             break;
     }
