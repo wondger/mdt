@@ -8,7 +8,9 @@
  * @todo: 
  * @changelog: 
  */
-var mdt = require("../lib/mdt");
+var mdt = require("../lib/mdt"),
+    program = require("commander");
+
 function main(argv) {
     if (!mdt) {
         return;
@@ -35,9 +37,27 @@ function main(argv) {
     }
 };
 
-if (!module.parent) {
-    main(process.argv);
-}
-else {
-    module.exports = main;
-}
+/*
+ *if (!module.parent) {
+ *    main(process.argv);
+ *}
+ *else {
+ *    module.exports = main;
+ *}
+ */
+
+program
+    .version("0.0.1")
+    .usage("[options] <markdown file>")
+    .option("-a, --all", "build all markdown files");
+
+program
+    .command("build")
+    .description("build html files via md files.")
+    .action(function(){
+        console.log("build what...");
+    });
+
+program.parse(process.argv);
+
+if (program.all) console.log("--all");
