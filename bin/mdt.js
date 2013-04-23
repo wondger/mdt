@@ -48,16 +48,28 @@ function main(argv) {
 
 program
     .version("0.0.1")
-    .usage("[options] <markdown file>")
-    .option("-a, --all", "build all markdown files");
+    .usage("command [options] <markdown file>.")
+    .option("-a, --all", "mdt command to all markdown files.")
+    .option("-f, --force", "mdt command to all markdown files force.");
 
 program
     .command("build")
     .description("build html files via md files.")
-    .action(function(){
-        console.log("build what...");
+    .action(function(file){
+        if (program.all) {
+            mdt.convertAll(program.force);
+        }
+
+        if (file) {
+            mdt.convert(file, program.force);
+        }
+    });
+
+program
+    .command("push")
+    .description("push files to server.")
+    .action(function(file){
+        mdt.push();
     });
 
 program.parse(process.argv);
-
-if (program.all) console.log("--all");
