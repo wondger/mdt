@@ -30,6 +30,7 @@
     "walker": ">=1.0.3",
     "cli-color": "~0.2.2",
     "jsftp": "~0.5.9",
-    "commander": "~1.1.1"
+    "commander": "~1.1.1",
+    "scp": "0.0.2"
   }
 }
