@@ -9,42 +9,12 @@
  * @changelog: 
  */
 var mdt = require("../lib/mdt"),
-    program = require("commander");
+    program = require("commander"),
+    log = require("../lib/mdt/log");
 
-function main(argv) {
-    if (!mdt) {
-        return;
-    }
-
-    var argv = argv.slice().slice(2),
-        sargv = argv.join(" "),
-        reg = /(?:^|\s+)(?:-f|--force)(?:\s+|$)/i;
-
-    var force = reg.test(sargv);
-    var src = sargv.replace(reg, "");
-
-
-    switch (src) {
-        case "":
-            mdt.convertAll(force);
-            break;
-        default:
-            /*
-             * command: mdt xxx.md
-             */
-            mdt.convert(src, force);
-            break;
-    }
-};
-
-/*
- *if (!module.parent) {
- *    main(process.argv);
- *}
- *else {
- *    module.exports = main;
- *}
- */
+function isString(s) {
+    return Object.prototype.toString.call(s) === '[object String]';
+}
 
 program
     .version("0.0.1")
@@ -59,8 +29,7 @@ program
         if (program.all) {
             mdt.convertAll(program.force);
         }
-
-        if (file) {
+        else if (isString(file)) {
             mdt.convert(file, program.force);
         }
     });
@@ -69,7 +38,12 @@ program
     .command("push")
     .description("push files to server.")
     .action(function(file){
-        mdt.push();
+        if (isString(file)) {
+            mdt.push(file);
+        }
+        else {
+            log.errorln("✗ file not pass.")
+        }
     });
 
 program.parse(process.argv);
