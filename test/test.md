@@ -1,13 +1,13 @@
 <!--
 @title: first markdown blog
 @description: test descrption
-@dest: ./html/test.html
+@dest: ./test.html
 @template: ./templates/default.tpl
 @abstract: just a test
     test
 -->
 
-# first markdown blog
+# first test markdown blog
 
 ## why
 

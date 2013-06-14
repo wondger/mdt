@@ -10,17 +10,18 @@
  */
 var mdt = require("../lib/mdt"),
     program = require("commander"),
-    log = require("../lib/mdt/log");
+    log = require("../lib/mdt/log"),
+    pkg = require("../package");
 
 function isString(s) {
     return Object.prototype.toString.call(s) === '[object String]';
 }
 
 program
-    .version("0.0.1")
+    .version(pkg.version)
     .usage("command [options] <markdown file>.")
-    .option("-a, --all", "mdt command to all markdown files.")
-    .option("-f, --force", "mdt command to all markdown files force.");
+    .option("-a, --all", "command to all markdown files.")
+    .option("-f, --force", "command to all markdown files force.");
 
 program
     .command("build")
@@ -29,8 +30,14 @@ program
         if (program.all) {
             mdt.convertAll(program.force);
         }
-        else if (isString(file)) {
-            mdt.convert(file, program.force);
+        else if (arguments.length > 1) {
+            var i = 0;
+            while(i < arguments.length - 1) {
+                mdt.convert(arguments[i++], program.force);
+            }
+        }
+        else {
+            log.errorln("✗ md file not pass.")
         }
     });
 
@@ -38,8 +45,14 @@ program
     .command("push")
     .description("push files to server.")
     .action(function(file){
-        if (isString(file)) {
-            mdt.push(file);
+        if (program.all) {
+            mdt.pushAll();
+        }
+        else if (arguments.length > 1) {
+            var i = 0;
+            while(i < arguments.length - 1) {
+                mdt.push(arguments[i++]);
+            }
         }
         else {
             log.errorln("✗ file not pass.")
